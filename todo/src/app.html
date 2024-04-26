@@ -1,6 +1,18 @@
 <template>
-  <h1>${message}!</h1>
+  <h1>${heading}</h1>
 
-  <h3>Here's what's amazing. This is all the TypeScript code for the app. But where is Aurelia? Well, the answer is that Aurelia tries as hard as possible to stay out of your TypeScript code. That's why you don't see it above. It's not needed. Aurelia has the ability to render plain TypeScript objects.</h3>
-  <h3>Aurelia is magic <3</h3>
+  <form submit.trigger="addTodo()">
+    <input type="text" value.bind="todoDescription">
+    <button type="submit" disabled.bind="!todoDescription">Add Todo</button>
+  </form>
+
+  <ul>
+    <li repeat.for="todo of todos">
+      <input type="checkbox" checked.bind="todo.done">
+      <span>
+        ${todo.description}
+      </span>
+      <button click.trigger="removeTodo(todo)">Remove</button>
+    </li>
+  </ul>
 </template>
